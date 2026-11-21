@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Rollercoaster Building Crew</title>
+    <meta name="description" content="Build a theme park, design roller coasters piece by piece and survive tornadoes, floods and earthquakes." />
+    <meta name="theme-color" content="#171a34" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Coaster Crew" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <header id="hud" class="hidden">
+      <div class="hud-group">
+        <div class="pill money" title="Coins (pretend money)">🪙 <b id="money">0</b></div>
+        <div class="pill" title="Day">📅 <b id="day">1</b> <span id="sky">☀️</span><b id="clock" hidden>08:00</b></div>
+        <div class="pill" title="People">🧑‍🤝‍🧑 <b id="guests">0</b></div>
+                <div class="pill" title="Happy?"><b id="happy">–</b></div><b id="rating" hidden>50</b>
+      </div>
+      <div class="hud-group">
+        <div class="speed" role="group" aria-label="Game speed">
+          <button data-speed="0" title="Pause (Space)">⏸</button>
+          <button data-speed="1" title="Normal speed (1)">▶</button>
+          <button data-speed="2" title="Fast (2)">⏩</button>
+          <button data-speed="3" title="Fastest (3)">⏭</button>
+        </div>
+        <button id="btn-voice" class="icon-btn" title="Read to me">🔊</button>
+        <button id="btn-settings" class="icon-btn" title="Settings">⚙️</button>
+      </div>
+    </header>
+
+    <div id="banner" class="hidden"></div>
+    <div id="toasts"></div>
+
+    <aside id="inspector" class="panel hidden"></aside>
+
+    <nav id="toolbar" class="hidden">
+      <div id="tray" class="panel hidden"></div>
+      <div id="tabs" class="panel"></div>
+    </nav>
+
+    <div id="hint" class="hidden"></div>
+
+    <div id="camctl" class="panel hidden" aria-label="Camera">
+      <button data-cam="zoom-in" title="Zoom in">＋</button>
+      <button data-cam="zoom-out" title="Zoom out">－</button>
+      <button data-cam="rot-l" title="Rotate view left (Q)">⟲</button>
+      <button data-cam="rot-r" title="Rotate view right (E)">⟳</button>
+    </div>
+
+    <div id="settings" class="panel hidden">
+      <h3>⚙️ Settings</h3>
+      <label class="toggle"><input type="checkbox" id="opt-disasters" checked /> 🌪️ Storms</label>
+      <label class="toggle"><input type="checkbox" id="opt-mute" /> 🔇 No sound</label>
+      <label class="toggle">🖼️ Look <select id="opt-quality"><option value="ultra">Ultra</option><option value="high">High</option><option value="low">Low</option></select></label>
+      <h4>Try a storm now</h4>
+      <div class="row">
+        <button data-test="tornado">🌪️ Wind</button>
+        <button data-test="flood">🌊 Rain</button>
+        <button data-test="quake">🌋 Shake</button>
+      </div>
+      <h4>For grown-ups: keys</h4>
+      <ul class="controls">
+        <li><kbd>Drag</kbd> / <kbd>Right-drag</kbd> / <kbd>WASD</kbd> move the camera</li>
+        <li><kbd>Scroll</kbd> zoom · <kbd>Q</kbd> <kbd>E</kbd> rotate view</li>
+        <li><kbd>R</kbd> rotate item · <kbd>Esc</kbd> / <kbd>Right-click</kbd> cancel</li>
+        <li><kbd>T</kbd> / <kbd>F</kbd> raise / lower coaster track · <kbd>Backspace</kbd> undo piece</li>
+        <li><kbd>Space</kbd> pause · <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> speed</li>
+      </ul>
+      <div class="row">
+        <button id="btn-save">💾 Save</button>
+        <button id="btn-new" class="danger">✨ New park</button>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="title-card">
+        <div class="title-emoji">🎢🎡🎠</div>
+        <h1>Rollercoaster<br />Building Crew</h1>
+        <p class="tag">Build a fun park! 🎢<br />Watch out for storms! 🌪️</p>
+        <div class="title-actions">
+          <button id="btn-continue" class="big hidden">▶️ Play</button>
+          <button id="btn-start" class="big primary">✨ New park</button>
+        </div>
+        <p class="small">👆 Tap · ✌️ Pinch to zoom</p>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
